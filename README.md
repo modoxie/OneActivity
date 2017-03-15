@@ -2,6 +2,7 @@
 # OneActivity
 尽量少的使用Activity构建整个项目，理想情况下就一个Activity，使界面转换更流畅。减少Activity被系统杀死后重建出现的各种bug。
 1 创建一个布局文件并创建一个类继承自UIview，重写onCreateView创建布局。
+
     @Override
     public View onCreateView(UIControl uiControl) {
         return uiControl.getLayoutInflater().inflate(R.layout.activity_main, uiControl.getRoot(), false);
@@ -18,6 +19,7 @@
     重写onViewCreate开始生命周期
     
     onViewCreate->onShow->(onRestart)->onStart->onResume->onPause->onStop->onHint->onDestroy
+    
     @Override
     public void onViewCreate() {
         super.onViewCreate();
@@ -29,7 +31,9 @@
             }
         });
     }
+    
 2 创建一个Activity 继承自AContext，重写Oncreate方法 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
