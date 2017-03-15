@@ -12,7 +12,9 @@ import com.base.oneactivity.function.RequestPermissionsResultAction;
  */
 public interface UIControl {
     Activity getActivity();
+
     LayoutInflater getLayoutInflater();
+
     UIControl show(UI to);
 
     UIControl show(UI to, ChangeAnimator changeAnimator);
@@ -47,17 +49,21 @@ public interface UIControl {
 
     void loadResources(String dexPath);
 
-    interface OnChange extends BaseAction.Action3<UI,UI,Float> {
+    interface OnChange extends BaseAction.Action3<UI, UI, Float> {
     }
 
-    interface OnFinish extends BaseAction.Action2<UI,UI>{
+    interface OnFinish extends BaseAction.Action2<UI, UI> {
+    }
+
+    interface OnStart extends BaseAction.Action2<UI, UI> {
     }
 
     class ChangeAnimator {
         private OnChange onChange;
         private OnFinish onFinish;
-        private OnFinish onStart;
-        private long time=600;
+        private OnStart onStart;
+        private long time = 600;
+
         public OnChange getOnChange() {
             if (onChange == null) {
                 onChange = new OnChange() {
@@ -73,25 +79,28 @@ public interface UIControl {
             this.onChange = onChange;
             return this;
         }
-        public OnFinish getOnStart(){
+
+        public OnStart getOnStart() {
             if (onStart == null) {
-                onStart = new OnFinish() {
+                onStart = new OnStart() {
                     @Override
-                    public void action(UI one,UI two) {
+                    public void action(UI one, UI two) {
                     }
                 };
             }
             return onStart;
         }
-        public ChangeAnimator setOnStart(OnFinish onStart) {
+
+        public ChangeAnimator setOnStart(OnStart onStart) {
             this.onStart = onStart;
             return this;
         }
+
         public OnFinish getOnFinish() {
             if (onFinish == null) {
                 onFinish = new OnFinish() {
                     @Override
-                    public void action(UI one,UI two) {
+                    public void action(UI one, UI two) {
                     }
                 };
             }
