@@ -13,11 +13,10 @@ import com.base.oneactivity.tool.UIUtil;
  */
 public class TestUI extends UIView {
 
-    public TestUI() {
+    public TestUI(){
 
     }
-
-    public TestUI(String name) {
+    public TestUI(String name){
         super(name);
     }
 
@@ -29,7 +28,7 @@ public class TestUI extends UIView {
     @Override
     public void onViewCreate() {
         super.onViewCreate();
-        this.<TextView>find(R.id.sample_text).setText(getName() + Math.random());
+        this.<TextView>find(R.id.sample_text).setText(getName()+Math.random());
         this.find(R.id.sample_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
