@@ -526,4 +526,13 @@ public class AContext extends AppCompatActivity implements UIControl {
             }
         }
     }
+
+    @Override
+    public void finish() {
+        for(UI ui:backUIViews){
+            destroy(ui);
+        }
+        destroy(nowUI);
+        super.finish();
+    }
 }

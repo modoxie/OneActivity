@@ -43,6 +43,8 @@ public interface UIControl {
 
     UI getTop();
 
+    void finish();
+
     UIControl addRequest(String[] permission, RequestPermissionsResultAction action);
 
     void useDexClassLoader(String path);

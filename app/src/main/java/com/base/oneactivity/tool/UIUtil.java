@@ -6,61 +6,69 @@ import android.util.Log;
 import com.base.oneactivity.ui.UI;
 import com.base.oneactivity.ui.UIControl;
 
-import org.json.JSONObject;
-
-import java.lang.annotation.Annotation;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/1/3
  */
 
 public class UIUtil {
-    private static UIControl mUiControl;
+    private static LinkedList<UIControl> uiControls = new LinkedList<>();
 
     public static void init(@NonNull UIControl uiControl) {
-        mUiControl = uiControl;
+        uiControls.add(uiControl);
         AppUtil.init(uiControl.getActivity().getApplication());
     }
 
     public static void out(@NonNull UIControl uiControl) {
-        if (mUiControl == uiControl) {
+        uiControls.remove(uiControl);
+        if (uiControls.size() < 1) {
             AppUtil.out();
-            mUiControl = null;
         }
+    }
+
+    public static void finish(){
+        for(UIControl uiControl:uiControls){
+            uiControl.finish();
+        }
+        uiControls.clear();
+        AppUtil.out();
     }
 
     public static void show(@NonNull UI ui) {
-        if (mUiControl == null) {
-            Log.e("UIUtil", "加载UI出错name:" + ui.getName() + "\nuiControl:" + mUiControl);
+        if (uiControls.size() < 1) {
+            Log.e("UIUtil", "加载UI出错name:" + ui.getName() + "\nuiControl:" + uiControls);
             return;
         }
-        mUiControl.show(ui);
+        uiControls.getLast().show(ui);
     }
 
     public static void show(@NonNull UI ui, UIControl.ChangeAnimator animator) {
-        if (mUiControl == null) {
-            Log.e("UIUtil", "加载UI出错name:" + ui.getName() + "\nuiControl:" + mUiControl);
+        if (uiControls.size() < 1) {
+            Log.e("UIUtil", "加载UI出错name:" + ui.getName() + "\nuiControl:" + uiControls);
             return;
         }
-        mUiControl.show(ui,animator);
+        uiControls.getLast().show(ui, animator);
     }
-    public static void destroy(UI ui){
-        if(ui==null) return;
-        if (mUiControl == null) {
-            Log.e("UIUtil", "加载UI出错name:" + ui.getName() + "\nuiControl:" + mUiControl);
+
+    public static void destroy(UI ui) {
+        if (ui == null) return;
+        if (uiControls.size() < 1) {
+            Log.e("UIUtil", "加载UI出错name:" + ui.getName() + "\nuiControl:" + uiControls);
             return;
         }
-        mUiControl.destroy(ui);
+        uiControls.getLast().destroy(ui);
     }
+
     public static void back() {
-        if (mUiControl == null) return;
-        mUiControl.back();
+        if (uiControls.size() < 1) return;
+        uiControls.getLast().back();
     }
 
     public static void back(UIControl.ChangeAnimator animator) {
-        if (mUiControl == null) return;
-        mUiControl.back(animator);
+        if (uiControls.size() < 1) return;
+        uiControls.getLast().back(animator);
     }
 }
