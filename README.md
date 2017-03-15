@@ -8,7 +8,6 @@
     }
     两个重构方法
     public TestUI(){
-
     }
     public TestUI(String name){
         super(name);
