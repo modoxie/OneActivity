@@ -30,9 +30,6 @@ public class UIUtil {
     }
 
     public static void finish(){
-        for(UIControl uiControl:uiControls){
-            uiControl.finish();
-        }
         uiControls.clear();
         AppUtil.out();
     }

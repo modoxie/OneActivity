@@ -1,4 +1,4 @@
-package com.base.oneactivity.ui;
+package com.base.oneactivity.tool;
 
 import android.content.res.AssetManager;
 import android.content.res.Resources;
@@ -7,9 +7,11 @@ import android.widget.FrameLayout;
 
 
 import com.base.oneactivity.function.RequestPermissionsResultAction;
+import com.base.oneactivity.ui.UI;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ import java.util.Map;
  * Created by Administrator on 2016/7/26
  */
 public class ControlUtil {
-    private static ControlUtil controlUtil;
+    private static HashMap<String,ControlUtil> controlUtils=new HashMap<>();
     private AssetManager mAssetManager;
     private Resources mResources;
     private Resources.Theme mTheme;
@@ -29,9 +31,11 @@ public class ControlUtil {
     private View view;
     private Map<String, RequestPermissionsResultAction> mapPermission;
 
-    public static ControlUtil getInstance() {
-        if (controlUtil == null) {
-            controlUtil = new ControlUtil();
+    public static ControlUtil getControl(String who) {
+        ControlUtil controlUtil=controlUtils.get(who);
+        if(controlUtil==null){
+            controlUtil=new ControlUtil();
+            controlUtils.put(who,controlUtil);
         }
         return controlUtil;
     }

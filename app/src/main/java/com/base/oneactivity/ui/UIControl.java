@@ -43,6 +43,8 @@ public interface UIControl {
 
     UI getTop();
 
+    String getName();
+
     void finish();
 
     UIControl addRequest(String[] permission, RequestPermissionsResultAction action);

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.base.oneactivity.function.RequestPermissionsResultAction;
+import com.base.oneactivity.tool.ControlUtil;
 import com.base.oneactivity.tool.ScreenUtil;
 import com.base.oneactivity.tool.UIUtil;
 
@@ -25,6 +26,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by Administrator on 2016/6/21
@@ -38,15 +40,19 @@ public class AContext extends AppCompatActivity implements UIControl {
     private UI nowUI;
     private FrameLayout root;
     private Map<String, RequestPermissionsResultAction> mapPermission;
-
+    private String name;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(name==null){
+            name="ac:"+UUID.randomUUID().toString();
+        }
         UIUtil.init(this);
         root = new FrameLayout(this);
         root.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         setContentView(root);
         if (savedInstanceState != null) {
+            name=savedInstanceState.getString("name");
             recoverySave(savedInstanceState);
         }
     }
@@ -60,7 +66,6 @@ public class AContext extends AppCompatActivity implements UIControl {
     public UIControl show(UI to) {
         if (isAnima) return this;
         if (to == null || to == nowUI) return this;
-        to.setUIControl(this);
         if (to.getView() == null) to.createView(this);
         UI old = nowUI;
         root.addView(to.getView());
@@ -79,7 +84,6 @@ public class AContext extends AppCompatActivity implements UIControl {
         if (isAnima) return this;
         if (changeAnimator == null) return show(to);
         if (to == null || to == nowUI) return this;
-        to.setUIControl(this);
         if (to.getView() == null) to.createView(this);
         final UI old = nowUI;
         final float sceneWidth = ScreenUtil.getSceneWidth();
@@ -146,7 +150,6 @@ public class AContext extends AppCompatActivity implements UIControl {
         }
         destroy(old);
         if (to != null) {
-            to.setUIControl(this);
             if (to.getView() == null) to.createView(this);
             root.addView(to.getView());
             to.onShow();
@@ -182,7 +185,6 @@ public class AContext extends AppCompatActivity implements UIControl {
             public void onAnimationStart(Animator animation) {
                 isAnima = true;
                 if (to != null) {
-                    to.setUIControl(AContext.this);
                     if (to.getView() == null) to.createView(AContext.this);
                     root.addView(to.getView());
                 }
@@ -418,11 +420,6 @@ public class AContext extends AppCompatActivity implements UIControl {
 
     @Override
     protected void onDestroy() {
-        Iterator<UI> iterator=backUIViews.iterator();
-        while(iterator.hasNext()){
-            UI ui=iterator.next();
-            if (ui != null) ui.setUIControl(null);
-        }
         if (nowUI != null) {
             destroy(nowUI);
         }
@@ -472,7 +469,8 @@ public class AContext extends AppCompatActivity implements UIControl {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        ControlUtil c = ControlUtil.getInstance();
+        outState.putString("name",name);
+        ControlUtil c = ControlUtil.getControl(name);
         c.setMapPermission(mapPermission);
         if (nowUI != null) {
             c.setNowUI(nowUI);
@@ -483,11 +481,10 @@ public class AContext extends AppCompatActivity implements UIControl {
     }
 
     protected void recoverySave(Bundle savedInstanceState) {
-        ControlUtil c = ControlUtil.getInstance();
+        ControlUtil c = ControlUtil.getControl(name);
         mapPermission = c.getMapPermission();
         nowUI = c.getNowUI();
         if (nowUI != null) {
-            nowUI.setUIControl(this);
             nowUI.setData(c.getData()).setView(c.getView());
             root.addView(nowUI.getView());
             nowUI.onShow();
@@ -534,5 +531,10 @@ public class AContext extends AppCompatActivity implements UIControl {
         }
         destroy(nowUI);
         super.finish();
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

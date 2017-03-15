@@ -15,8 +15,6 @@ public interface UI{
     int getID();
     JSONObject getData();
     UI setData(JSONObject data);
-    UIControl getUIControl();
-    void setUIControl(UIControl uiControl);
     void createView(UIControl uiControl);
     View onCreateView(UIControl uiControl);
     void refresh();

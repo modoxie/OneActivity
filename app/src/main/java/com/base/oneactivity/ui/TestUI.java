@@ -1,16 +1,25 @@
 package com.base.oneactivity.ui;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.base.oneactivity.MainActivity;
 import com.base.oneactivity.R;
-import com.base.oneactivity.tool.ScreenUtil;
 import com.base.oneactivity.tool.UIUtil;
 
 /**
  * Created by Administrator on 2017/1/3
  */
 public class TestUI extends UIView {
+
+    public TestUI() {
+
+    }
+
+    public TestUI(String name) {
+        super(name);
+    }
 
     @Override
     public View onCreateView(UIControl uiControl) {
@@ -20,31 +29,12 @@ public class TestUI extends UIView {
     @Override
     public void onViewCreate() {
         super.onViewCreate();
-        this.<TextView>find(R.id.sample_text).setText(String.valueOf(add(13, 31)));
+        this.<TextView>find(R.id.sample_text).setText(getName() + Math.random());
         this.find(R.id.sample_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UIUtil.show(new TestUI(), new UIControl.ChangeAnimator()
-                        .setOnChange(new UIControl.OnChange() {
-                            @Override
-                            public void action(UI one, UI two, Float three) {
-                                one.getView().setTranslationX(three * ScreenUtil.getSceneWidth() * -1);
-                                two.getView().setTranslationX((1 - three) * ScreenUtil.getSceneWidth());
-                            }
-                        })
-                .setOnFinish(new UIControl.OnFinish() {
-                    @Override
-                    public void action(UI one, UI two) {
-                        UIUtil.destroy(one);
-                    }
-                }));
+                view.getContext().startActivity(new Intent(view.getContext(), MainActivity.class));
             }
         });
-    }
-
-    private int add(int a, int b) {
-        int s = a ^ b;
-        int c = a & b;
-        return c == 0 ? s : add(s, c << 1);
     }
 }

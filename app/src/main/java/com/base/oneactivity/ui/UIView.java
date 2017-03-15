@@ -3,6 +3,7 @@ package com.base.oneactivity.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -19,24 +20,23 @@ public abstract class UIView implements UI {
     private JSONObject mData;
     protected UIModel uiModel;
     protected View mView;
-    private UIControl uiControl;
     private String name;
     public static ExecutorService executorService;
 
-    public UIView(){
+    public UIView() {
 
     }
 
-    public UIView(String name){
-        this.name=name;
+    public UIView(String name) {
+        this.name = name;
     }
 
     @Override
     public String getName() {
-        if(null==name|| TextUtils.isEmpty(name)){
-            return name;
+        if (null == name || TextUtils.isEmpty(name)) {
+            return getClass().getSimpleName();
         }
-        return getClass().getSimpleName();
+        return name;
     }
 
     @Override
@@ -61,19 +61,9 @@ public abstract class UIView implements UI {
         return this;
     }
 
-    @Override
-    public UIControl getUIControl() {
-        return uiControl;
-    }
-
-    @Override
-    public void setUIControl(UIControl uiControl) {
-        this.uiControl = uiControl;
-    }
 
     @Override
     public void createView(UIControl uiControl) {
-        this.uiControl = uiControl;
         mView = onCreateView(uiControl);
         onViewCreate();
     }
@@ -83,16 +73,17 @@ public abstract class UIView implements UI {
 
     @Override
     public void onViewCreate() {
-
+        Log.d("UIView","onViewCreate");
     }
 
     @Override
     public void onShow() {
-
+        Log.d("UIView","onShow");
     }
 
     @Override
     public void onHint() {
+        Log.d("UIView","onHint");
         if (getView() != null) {
             InputMethodManager imm = (InputMethodManager) getView().getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
@@ -101,47 +92,48 @@ public abstract class UIView implements UI {
 
     @Override
     public boolean onBack() {
+        Log.d("UIView","onBack");
         return false;
     }
 
     @Override
     public void onDestroy() {
-        uiControl = null;
+        Log.d("UIView","onDestroy");
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        Log.d("UIView","onActivityResult");
     }
 
     @Override
     public void refresh() {
-
+        Log.d("UIView","refresh");
     }
 
     @Override
     public void onRestart() {
-
+        Log.d("UIView","onRestart");
     }
 
     @Override
     public void onStart() {
-
+        Log.d("UIView","onStart");
     }
 
     @Override
     public void onResume() {
-
+        Log.d("UIView","onResume");
     }
 
     @Override
     public void onPause() {
-
+        Log.d("UIView","onPause");
     }
 
     @Override
     public void onStop() {
-
+        Log.d("UIView","onStop");
     }
 
     @Override

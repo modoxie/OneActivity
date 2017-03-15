@@ -17,7 +17,9 @@ public class MainActivity extends AContext {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UIUtil.show(new TestUI());
+        if(savedInstanceState==null){
+            UIUtil.show(new TestUI());
+        }
     }
 
     /**
