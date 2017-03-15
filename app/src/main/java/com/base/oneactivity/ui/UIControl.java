@@ -50,13 +50,13 @@ public interface UIControl {
     interface OnChange extends BaseAction.Action3<UI,UI,Float> {
     }
 
-    interface ResetUI extends BaseAction.Action2<UI,UI>{
+    interface OnFinish extends BaseAction.Action2<UI,UI>{
     }
 
     class ChangeAnimator {
         private OnChange onChange;
-        private ResetUI onFinish;
-        private ResetUI onStart;
+        private OnFinish onFinish;
+        private OnFinish onStart;
         private long time=600;
         public OnChange getOnChange() {
             if (onChange == null) {
@@ -73,9 +73,9 @@ public interface UIControl {
             this.onChange = onChange;
             return this;
         }
-        public ResetUI getOnStart(){
+        public OnFinish getOnStart(){
             if (onStart == null) {
-                onStart = new ResetUI() {
+                onStart = new OnFinish() {
                     @Override
                     public void action(UI one,UI two) {
                     }
@@ -83,13 +83,13 @@ public interface UIControl {
             }
             return onStart;
         }
-        public ChangeAnimator setOnStart(ResetUI onStart) {
+        public ChangeAnimator setOnStart(OnFinish onStart) {
             this.onStart = onStart;
             return this;
         }
-        public ResetUI getOnFinish() {
+        public OnFinish getOnFinish() {
             if (onFinish == null) {
-                onFinish = new ResetUI() {
+                onFinish = new OnFinish() {
                     @Override
                     public void action(UI one,UI two) {
                     }
@@ -98,7 +98,7 @@ public interface UIControl {
             return onFinish;
         }
 
-        public ChangeAnimator setOnFinish(ResetUI onFinish) {
+        public ChangeAnimator setOnFinish(OnFinish onFinish) {
             this.onFinish = onFinish;
             return this;
         }

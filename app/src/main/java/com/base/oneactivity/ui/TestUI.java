@@ -32,7 +32,7 @@ public class TestUI extends UIView {
                                 two.getView().setTranslationX((1 - three) * ScreenUtil.getSceneWidth());
                             }
                         })
-                .setOnFinish(new UIControl.ResetUI() {
+                .setOnFinish(new UIControl.OnFinish() {
                     @Override
                     public void action(UI one, UI two) {
                         UIUtil.destroy(one);
