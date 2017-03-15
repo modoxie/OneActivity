@@ -1,16 +1,15 @@
-package com.base.oneactivity.ui;
+package com.base.example;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
-
-import com.base.oneactivity.MainActivity;
-import com.base.oneactivity.R;
-import com.base.oneactivity.tool.UIUtil;
+import com.base.oneactivity.ui.UIControl;
+import com.base.oneactivity.ui.UIView;
 
 /**
- * Created by Administrator on 2017/1/3
+ * Created by Administrator on 2017/3/15
  */
+
 public class TestUI extends UIView {
 
     public TestUI(){
@@ -37,3 +36,4 @@ public class TestUI extends UIView {
         });
     }
 }
+
