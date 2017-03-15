@@ -24,7 +24,7 @@ public abstract class UIView implements UI {
     public static ExecutorService executorService;
 
     public UIView() {
-
+        name=this.getClass().getSimpleName();
     }
 
     public UIView(String name) {
@@ -33,9 +33,6 @@ public abstract class UIView implements UI {
 
     @Override
     public String getName() {
-        if (null == name || TextUtils.isEmpty(name)) {
-            return getClass().getSimpleName();
-        }
         return name;
     }
 
@@ -73,12 +70,12 @@ public abstract class UIView implements UI {
 
     @Override
     public void onViewCreate() {
-        Log.d("UIView","onViewCreate");
+        Log.d(name,"onViewCreate");
     }
 
     @Override
     public void onShow() {
-        Log.d("UIView","onShow");
+        Log.d(name,"onShow");
     }
 
     @Override
@@ -108,32 +105,32 @@ public abstract class UIView implements UI {
 
     @Override
     public void refresh() {
-        Log.d("UIView","refresh");
+        Log.d(name,"refresh");
     }
 
     @Override
     public void onRestart() {
-        Log.d("UIView","onRestart");
+        Log.d(name,"onRestart");
     }
 
     @Override
     public void onStart() {
-        Log.d("UIView","onStart");
+        Log.d(name,"onStart");
     }
 
     @Override
     public void onResume() {
-        Log.d("UIView","onResume");
+        Log.d(name,"onResume");
     }
 
     @Override
     public void onPause() {
-        Log.d("UIView","onPause");
+        Log.d(name,"onPause");
     }
 
     @Override
     public void onStop() {
-        Log.d("UIView","onStop");
+        Log.d(name,"onStop");
     }
 
     @Override
