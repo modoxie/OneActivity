@@ -70,17 +70,14 @@ public abstract class UIView implements UI {
 
     @Override
     public void onViewCreate() {
-        Log.d(name,"onViewCreate");
     }
 
     @Override
     public void onShow() {
-        Log.d(name,"onShow");
     }
 
     @Override
     public void onHint() {
-        Log.d(name,"onHint");
         if (getView() != null) {
             InputMethodManager imm = (InputMethodManager) getView().getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
@@ -89,48 +86,39 @@ public abstract class UIView implements UI {
 
     @Override
     public boolean onBack() {
-        Log.d(name,"onBack");
         return false;
     }
 
     @Override
     public void onDestroy() {
-        Log.d(name,"onDestroy");
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(name,"onActivityResult");
     }
 
     @Override
     public void refresh() {
-        Log.d(name,"refresh");
     }
 
     @Override
     public void onRestart() {
-        Log.d(name,"onRestart");
     }
 
     @Override
     public void onStart() {
-        Log.d(name,"onStart");
     }
 
     @Override
     public void onResume() {
-        Log.d(name,"onResume");
     }
 
     @Override
     public void onPause() {
-        Log.d(name,"onPause");
     }
 
     @Override
     public void onStop() {
-        Log.d(name,"onStop");
     }
 
     @Override
