@@ -18,7 +18,7 @@
         super(name);
     }
     
-  重写onViewCreate开始生命周期。onViewCreate->onShow->(onRestart)->onStart->onResume->onPause->onStop->onHint->onDestroy
+  重写onViewCreate开始生命周期。onViewCreate->onShow->[(onRestart)->onStart->onResume->onPause->onStop]->onHint->onDestroy
     
     @Override
     public void onViewCreate() {
