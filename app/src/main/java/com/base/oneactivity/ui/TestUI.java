@@ -35,7 +35,7 @@ public class TestUI extends UIView {
                 .setOnFinish(new UIControl.ResetUI() {
                     @Override
                     public void action(UI one, UI two) {
-                        UIUtil.destroy(two);
+                        UIUtil.destroy(one);
                     }
                 }));
             }

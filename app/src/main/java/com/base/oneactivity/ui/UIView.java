@@ -2,6 +2,7 @@ package com.base.oneactivity.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -19,10 +20,22 @@ public abstract class UIView implements UI {
     protected UIModel uiModel;
     protected View mView;
     private UIControl uiControl;
+    private String name;
     public static ExecutorService executorService;
+
+    public UIView(){
+
+    }
+
+    public UIView(String name){
+        this.name=name;
+    }
 
     @Override
     public String getName() {
+        if(null==name|| TextUtils.isEmpty(name)){
+            return name;
+        }
         return getClass().getSimpleName();
     }
 

@@ -15,3 +15,6 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class com.base.ui.** {*;}
+-keep public class * extends com.base.oneactivity.ui.UIVIew
+-keep class com.base.oneactivity.** {*;}

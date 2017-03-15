@@ -102,14 +102,14 @@ public class AContext extends AppCompatActivity implements UIControl {
             @Override
             public void onAnimationEnd(Animator animation) {
                 isAnima = false;
+                nowUI = to;
                 if (old != null) {
                     root.removeView(old.getView());
-                    changeAnimator.getOnFinish().action(old, to);
                     old.onHint();
                     backUIViews.add(old);
+                    changeAnimator.getOnFinish().action(old, to);
                 }
                 to.onShow();
-                nowUI = to;
             }
 
             @Override
