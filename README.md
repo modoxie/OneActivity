@@ -8,17 +8,17 @@
         return uiControl.getLayoutInflater().inflate(R.layout.activity_main, uiControl.getRoot(), false);
     }
     
-   两个重构方法。
-    
-    public TestUI(){
+  两个重构方法。
+   
+    public TestUI(){
     }
+    
     public TestUI(String name){
         super(name);
     }
     
-   重写onViewCreate开始生命周期
-    
-    onViewCreate->onShow->(onRestart)->onStart->onResume->onPause->onStop->onHint->onDestroy
+  重写onViewCreate开始生命周期。
+  onViewCreate->onShow->(onRestart)->onStart->onResume->onPause->onStop->onHint->onDestroy
     
     @Override
     public void onViewCreate() {
