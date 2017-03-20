@@ -3,6 +3,8 @@ package com.base.example;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+
+import com.base.oneactivity.tool.UIUtil;
 import com.base.oneactivity.ui.UIControl;
 import com.base.oneactivity.ui.UIView;
 
@@ -31,7 +33,7 @@ public class TestUI extends UIView {
         this.find(R.id.sample_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.getContext().startActivity(new Intent(view.getContext(), MainActivity.class));
+                UIUtil.show(new TestUI());
             }
         });
     }

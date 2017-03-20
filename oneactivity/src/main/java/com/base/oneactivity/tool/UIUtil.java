@@ -22,7 +22,7 @@ public class UIUtil {
     public static void init(@NonNull UIControl uiControl) {
         uiControls.add(uiControl);
         AppUtil.init(uiControl.getActivity().getApplication());
-        defaultAnim=new LeftRightAnim();
+        defaultAnim = new LeftRightAnim();
     }
 
     public static void out(@NonNull UIControl uiControl) {
@@ -38,7 +38,7 @@ public class UIUtil {
     }
 
     public static void show(@NonNull UI ui) {
-       show(ui,defaultAnim.getInAnim());
+        show(ui, defaultAnim.getInAnim());
     }
 
     public static void show(@NonNull UI ui, UIControl.ChangeAnimator animator) {
@@ -46,7 +46,11 @@ public class UIUtil {
             Log.e("UIUtil", "加载UI出错name:" + ui.getName() + "\nuiControl:" + uiControls);
             return;
         }
-        uiControls.getLast().show(ui, animator);
+        if (animator == null) {
+            uiControls.getLast().show(ui);
+        } else {
+            uiControls.getLast().show(ui, animator);
+        }
     }
 
     public static void destroy(UI ui) {
@@ -59,12 +63,16 @@ public class UIUtil {
     }
 
     public static void back() {
-       back(defaultAnim.getOutAnim());
+        back(defaultAnim.getOutAnim());
     }
 
     public static void back(UIControl.ChangeAnimator animator) {
         if (uiControls.size() < 1) return;
-        uiControls.getLast().back(animator);
+        if(animator==null){
+            uiControls.getLast().back();
+        }else {
+            uiControls.getLast().back(animator);
+        }
     }
 
     public static void setDefaultAnim(AnimControl defaultAnim) {

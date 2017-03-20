@@ -20,8 +20,10 @@ public class LeftRightAnim implements AnimControl {
                 return new UIControl.OnChange() {
                     @Override
                     public void action(UI one, UI two, Float three) {
-                        if (one != null) one.getView().setTranslationX(-sceneWidth * three);
-                        if (two != null) two.getView().setTranslationX(sceneWidth * (1 - three));
+                        if (one != null && two != null) {
+                            one.getView().setTranslationX(-sceneWidth * three);
+                            two.getView().setTranslationX(sceneWidth * (1 - three));
+                        }
                     }
                 };
             }
@@ -31,8 +33,10 @@ public class LeftRightAnim implements AnimControl {
                 return new UIControl.OnStart() {
                     @Override
                     public void action(UI one, UI two) {
-                        if (one != null) one.getView().setTranslationX(0);
-                        if (two != null) two.getView().setTranslationX(sceneWidth);
+                        if (one != null && two != null) {
+                            one.getView().setTranslationX(0);
+                            two.getView().setTranslationX(sceneWidth);
+                        }
                     }
                 };
             }
@@ -42,8 +46,10 @@ public class LeftRightAnim implements AnimControl {
                 return new UIControl.OnFinish() {
                     @Override
                     public void action(UI one, UI two) {
-                        if (one != null) one.getView().setTranslationX(0);
-                        if (two != null) two.getView().setTranslationX(0);
+                        if (one != null && two != null) {
+                            one.getView().setTranslationX(0);
+                            two.getView().setTranslationX(0);
+                        }
                     }
                 };
             }
@@ -58,8 +64,10 @@ public class LeftRightAnim implements AnimControl {
                 return new UIControl.OnChange() {
                     @Override
                     public void action(UI one, UI two, Float three) {
-                        if (one != null) one.getView().setTranslationX(-sceneWidth * three);
-                        if (two != null) two.getView().setTranslationX(sceneWidth * (1 - three));
+                        if (one != null && two != null) {
+                            one.getView().setTranslationX(-sceneWidth * (1 - three));
+                            two.getView().setTranslationX(sceneWidth * three);
+                        }
                     }
                 };
             }
@@ -69,8 +77,10 @@ public class LeftRightAnim implements AnimControl {
                 return new UIControl.OnStart() {
                     @Override
                     public void action(UI one, UI two) {
-                        if (one != null) one.getView().setTranslationX(-sceneWidth);
-                        if (two != null) two.getView().setTranslationX(0);
+                        if (one != null && two != null) {
+                            one.getView().setTranslationX(-sceneWidth);
+                            two.getView().setTranslationX(0);
+                        }
                     }
                 };
             }
@@ -80,8 +90,10 @@ public class LeftRightAnim implements AnimControl {
                 return new UIControl.OnFinish() {
                     @Override
                     public void action(UI one, UI two) {
-                        if (one != null) one.getView().setTranslationX(0);
-                        if (two != null) two.getView().setTranslationX(0);
+                        if (one != null && two != null) {
+                            one.getView().setTranslationX(0);
+                            two.getView().setTranslationX(0);
+                        }
                     }
                 };
             }

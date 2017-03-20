@@ -366,7 +366,7 @@ public class AContext extends AppCompatActivity implements UIControl {
     public void onBackPressed() {
         if (isAnima) return;
         if (nowUI == null || !nowUI.onBack()) {
-            back();
+            UIUtil.back();
         }
     }
 
