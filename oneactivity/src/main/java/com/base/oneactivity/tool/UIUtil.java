@@ -5,10 +5,10 @@ import android.util.Log;
 
 import com.base.oneactivity.ui.UI;
 import com.base.oneactivity.ui.UIControl;
+import com.base.oneactivity.ui.anim.AnimControl;
+import com.base.oneactivity.ui.anim.LeftRightAnim;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/1/3
@@ -16,10 +16,13 @@ import java.util.List;
 
 public class UIUtil {
     private static LinkedList<UIControl> uiControls = new LinkedList<>();
+    private static AnimControl defaultAnim;
+
 
     public static void init(@NonNull UIControl uiControl) {
         uiControls.add(uiControl);
         AppUtil.init(uiControl.getActivity().getApplication());
+        defaultAnim=new LeftRightAnim();
     }
 
     public static void out(@NonNull UIControl uiControl) {
@@ -29,17 +32,13 @@ public class UIUtil {
         }
     }
 
-    public static void finish(){
+    public static void finish() {
         uiControls.clear();
         AppUtil.out();
     }
 
     public static void show(@NonNull UI ui) {
-        if (uiControls.size() < 1) {
-            Log.e("UIUtil", "加载UI出错name:" + ui.getName() + "\nuiControl:" + uiControls);
-            return;
-        }
-        uiControls.getLast().show(ui);
+       show(ui,defaultAnim.getInAnim());
     }
 
     public static void show(@NonNull UI ui, UIControl.ChangeAnimator animator) {
@@ -60,12 +59,15 @@ public class UIUtil {
     }
 
     public static void back() {
-        if (uiControls.size() < 1) return;
-        uiControls.getLast().back();
+       back(defaultAnim.getOutAnim());
     }
 
     public static void back(UIControl.ChangeAnimator animator) {
         if (uiControls.size() < 1) return;
         uiControls.getLast().back(animator);
+    }
+
+    public static void setDefaultAnim(AnimControl defaultAnim) {
+        UIUtil.defaultAnim = defaultAnim;
     }
 }
