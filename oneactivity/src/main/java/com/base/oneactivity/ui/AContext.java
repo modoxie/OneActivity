@@ -504,7 +504,7 @@ public class AContext extends AppCompatActivity implements UIControl {
         if (action.toast != null) action.toast.action();
         if (permission.length > 0) {
             mapPermission.put(permission[0], action);
-            ActivityCompat.requestPermissions(getActivity(), new String[]{permission[0]}, mapPermission.size());
+            ActivityCompat.requestPermissions(getActivity(), permission, mapPermission.size());
         }
         return this;
     }

@@ -23,7 +23,7 @@ public class ControlUtil {
     private AssetManager mAssetManager;
     private Resources mResources;
     private Resources.Theme mTheme;
-    private boolean isAnima;
+    private boolean isAnim;
     private LinkedList<UI> backUIViews = new LinkedList<>();
     private UI nowUI;
     private FrameLayout root;
@@ -64,12 +64,12 @@ public class ControlUtil {
         this.mTheme = mTheme;
     }
 
-    public boolean isAnima() {
-        return isAnima;
+    public boolean isAnim() {
+        return isAnim;
     }
 
-    public void setAnima(boolean anima) {
-        isAnima = anima;
+    public void setAnim(boolean anim) {
+        isAnim = anim;
     }
 
     public LinkedList<UI> getBackUIViews() {
