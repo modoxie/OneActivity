@@ -65,8 +65,8 @@ public class LeftRightAnim implements AnimControl {
                     @Override
                     public void action(UI one, UI two, Float three) {
                         if (one != null && two != null) {
-                            one.getView().setTranslationX(-sceneWidth * (1 - three));
-                            two.getView().setTranslationX(sceneWidth * three);
+                            two.getView().setTranslationX(-sceneWidth * (1 - three));
+                            one.getView().setTranslationX(sceneWidth * three);
                         }
                     }
                 };
@@ -78,8 +78,8 @@ public class LeftRightAnim implements AnimControl {
                     @Override
                     public void action(UI one, UI two) {
                         if (one != null && two != null) {
-                            one.getView().setTranslationX(-sceneWidth);
-                            two.getView().setTranslationX(0);
+                            two.getView().setTranslationX(-sceneWidth);
+                            one.getView().setTranslationX(0);
                         }
                     }
                 };
