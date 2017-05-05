@@ -91,6 +91,10 @@ public abstract class UIView implements UI {
 
     @Override
     public void onDestroy() {
+        if (getView() != null) {
+            InputMethodManager imm = (InputMethodManager) getView().getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+        }
     }
 
     @Override
