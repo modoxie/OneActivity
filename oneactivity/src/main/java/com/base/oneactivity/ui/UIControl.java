@@ -66,7 +66,7 @@ public interface UIControl {
         private OnChange onChange;
         private OnFinish onFinish;
         private OnStart onStart;
-        private long time = 600;
+        private long time = 300;
 
         public OnChange getOnChange() {
             if (onChange == null) {
